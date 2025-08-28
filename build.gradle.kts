@@ -119,12 +119,18 @@ springBoot {
 }
 
 tasks.named<BootBuildImage>("bootBuildImage") {
-    imageName.set("$group/${project.name}")
+    // Can include the name of the image as env variable
+    imageName.set(System.getenv("VERIFIER_SERVER_IMAGE_NAME") ?: "${project.group}/${project.name}")
     publish.set(false)
     // get the BP_OCI_* from env, for https://github.com/paketo-buildpacks/image-labels
     // get the BP_JVM_* from env, jlink optimisation
     environment.set(System.getenv())
     val env = environment.get()
+    // Set TMPDIR to a Linux-compatible path, for running on mac
+    environment.set(mapOf(
+        "TMPDIR" to "/tmp",
+        "BP_JVM_VERSION" to "17"
+    ))
     docker {
         publishRegistry {
             env["REGISTRY_URL"]?.let { url = it }
