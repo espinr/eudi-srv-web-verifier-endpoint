@@ -102,7 +102,7 @@ data class ResponseEncryptionOption(
 
 @Serializable
 @JvmInline
-value class CoseAlgorithm(val value: String)
+value class CoseAlgorithm(val value: Int)
 
 /**
  * Verifiable Presentation formats supported by Verifier Endpoint.

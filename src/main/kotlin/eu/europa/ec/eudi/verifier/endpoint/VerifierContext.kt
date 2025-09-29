@@ -695,22 +695,9 @@ private fun Environment.clientMetaData(): ClientMetaData {
                 VpFormatsSupported.SdJwtVc(sdJwtAlgorithms = sdJwtAlgorithms, kbJwtAlgorithms = kbJwtAlgorithms)
             } else null
             
-        // val msoMdoc =
-        //    if (getProperty<Boolean>("verifier.clientMetadata.vpFormats.msoMdoc.enabled") ?: true) {
-        //        VpFormatsSupported.MsoMdoc(issuerAuthAlgorithms = null, deviceAuthAlgorithms = null)
-        //    } else null
-
-        // TODO fix this algorithm and the parsing
-        val msoMdoc =
+         val msoMdoc =
             if (getProperty<Boolean>("verifier.clientMetadata.vpFormats.msoMdoc.enabled") ?: true) {
-                val coseAlgorithms: NonEmptyList<CoseAlgorithm> = nonEmptyListOf(
-                    CoseAlgorithm("ES256")  // -7 = ES256
-                )
-                
-                VpFormatsSupported.MsoMdoc(
-                    issuerAuthAlgorithms = coseAlgorithms, 
-                    deviceAuthAlgorithms = coseAlgorithms
-                )                
+                VpFormatsSupported.MsoMdoc(issuerAuthAlgorithms = null, deviceAuthAlgorithms = null)
             } else null
 
         VpFormatsSupported(sdJwtVc, msoMdoc)
