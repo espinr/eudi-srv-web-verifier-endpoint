@@ -12,7 +12,7 @@ services:
       VERIFIER_RESPONSE_MODE: "DirectPost"
 
   verifier-ui:
-    image: ghcr.io/eu-digital-identity-wallet/eudi-web-verifier:latest
+    image: ghcr.io/eu-digital-identity-wallet/eudi-web-verifier:v0.9.1
     container_name: verifier-ui
     ports:
       - "4300:4300"
