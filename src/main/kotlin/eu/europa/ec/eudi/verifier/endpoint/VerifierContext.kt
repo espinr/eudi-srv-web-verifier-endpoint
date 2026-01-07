@@ -700,7 +700,7 @@ private fun Environment.clientMetaData(): ClientMetaData {
         val msoMdoc =
             if (getProperty<Boolean>("verifier.clientMetadata.vpFormats.msoMdoc.enabled") ?: true) {
                 val coseAlgorithms: NonEmptyList<CoseAlgorithm> = nonEmptyListOf(
-                    CoseAlgorithm(-7)  // -7 = ES256
+                    CoseAlgorithm("-7")  // -7 = ES256
                 )
                 
                 VpFormatsSupported.MsoMdoc(
